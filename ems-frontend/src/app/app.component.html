@@ -1,5 +1,18 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navabr-nav">
+    <li class="nav-item">
+      <a routerLink="employees" routerLinkActive="active"class="nav-link">Employee List</a>
+    </li>
+  </ul>
+</nav>
+
 <h1 class="text-center">Employee List</h1>
 <div class="container">
-  <app-employee-list></app-employee-list>
+  <router-outlet></router-outlet>
 </div>
+<footer class="footer">
+  <div class="container">
+    <span>@copy</span>
+  </div>
+</footer>
   
