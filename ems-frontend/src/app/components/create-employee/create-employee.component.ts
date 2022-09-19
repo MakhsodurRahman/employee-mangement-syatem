@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Employee } from 'src/app/AllClass/employee';
 import { EmployeeService } from 'src/app/service/employeeService';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-employee',
@@ -33,6 +34,16 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit(){
     console.log(this.employee);
     this.saveEmployee();
+  }
+
+  openSweetalert(){
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: 'Successfully Created',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
 }
