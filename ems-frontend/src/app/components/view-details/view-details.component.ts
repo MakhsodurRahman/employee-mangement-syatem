@@ -9,8 +9,10 @@ import { EmployeeService } from 'src/app/service/employeeService';
   styleUrls: ['./view-details.component.css']
 })
 export class ViewDetailsComponent implements OnInit {
+
   employee: Employee = new Employee();
   id!: number;
+
   constructor(private employeeService:EmployeeService,
     private route: ActivatedRoute) { }
 
@@ -19,7 +21,7 @@ export class ViewDetailsComponent implements OnInit {
     this.viewDetails();
   }
   viewDetails() {
-    this.employeeService.viewDetails(this.id).subscribe(data =>{
+    this.employeeService.getEmployeeById(this.id).subscribe(data =>{
       this.employee = data;
     },
     error => console.log(error)
