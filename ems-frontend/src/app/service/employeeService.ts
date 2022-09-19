@@ -32,7 +32,7 @@ export class EmployeeService {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 
-  viewDetails(id: number): Observable<Employee>{
-    return this.httpClient.get<Employee>(`${this.baseUrl}/{id}`);
-  }
+  // viewDetails(id: number): Observable<Employee>{
+  //   return this.httpClient.get<Employee>(`${this.baseUrl}/{id}`);
+  // }
 }
