@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/AllClass/employee';
 import { EmployeeService } from 'src/app/service/employeeService';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-employee',
@@ -32,6 +33,15 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   
+  openSweetalert(){
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: 'Successfully Updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
   onSubmit(){
     this.employeeService.updateEmployee(this.id,this.employee).subscribe(data =>{
       this.gotToEmployeeList();
