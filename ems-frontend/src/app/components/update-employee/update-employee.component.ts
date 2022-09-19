@@ -17,26 +17,27 @@ export class UpdateEmployeeComponent implements OnInit {
     private roter:Router) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    this.getEmployeeById();
+    this.id = +this.route.snapshot.params['id'];
+      this.employeeService.getEmployeeById(this.id).subscribe(data=>{
+        this.employee = data;
+        
+      },
+      error => console.log(error)
+      );
   }
 
-  getEmployeeById(){
-    this.employeeService.getEmployeeById(this.id).subscribe(data=>{
-      this.employee = data;
-      
-    },
-    error => console.log(error)
-    );
-  }
+  
   gotToEmployeeList(){
     this.roter.navigate(['/employees']);
   }
 
   
   onSubmit(){
-    this.getEmployeeById();
-    this.gotToEmployeeList();
+    this.employeeService.updateEmployee(this.id,this.employee).subscribe(data =>{
+      this.gotToEmployeeList();
+    }, error => console.log(error)
+    );
+    
   }
 
 }
