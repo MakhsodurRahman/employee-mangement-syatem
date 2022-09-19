@@ -12,13 +12,15 @@ export class EmployeeListComponent implements OnInit {
 
   employees!: Employee[];
 
-  constructor(private employeeService: EmployeeService,
-    private router:Router) { }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.getEmployees();
   }
-  private getEmployees() {
+  getEmployees() {
     this.employeeService.getEmployeeList().subscribe(data =>{
       this.employees = data;
     }
@@ -29,8 +31,22 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['update-employee',id]);
   }
 
+  deleteEmployee(id:number){
+    this.employeeService.deleteEmployee(id).subscribe(data =>{
+      this.gotToEmployeeList();
+      this.getEmployees();
+      console.log('ki ache jibone');
+    })
+
+  }
+
+  gotToEmployeeList(){
+    this.router.navigate(['/employees']);
+  }
+
   viewDetails(id: number){
     this.router.navigate(['view-details',id]);
   }
+
 
 }
