@@ -6,7 +6,9 @@ import com.ems.repository.EmployeeRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -41,6 +43,14 @@ public class EmployeeController {
         Employee updateEmployee = employeeRepository.save(employee);
         return ResponseEntity.ok(updateEmployee);
 
+    }
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable Long id){
+        Employee theEmployee = employeeRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id +" this id not found"));
+        employeeRepository.delete(theEmployee);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted",Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 }
