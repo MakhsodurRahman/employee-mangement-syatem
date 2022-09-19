@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/AllClass/employee';
 import { EmployeeService } from 'src/app/service/employeeService';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-list',
@@ -47,6 +48,25 @@ export class EmployeeListComponent implements OnInit {
   viewDetails(id: number){
     this.router.navigate(['view-details',id]);
   }
-
+  
+  deleteSweetAlart(){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Employee has been deleted.',
+        'success'
+      )
+    }
+  })
+}
 
 }
